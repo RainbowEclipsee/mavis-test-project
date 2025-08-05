@@ -12,12 +12,6 @@ export default function FilterPanel({ onFilterChange }) {
     <div className="filter-panel">
       <input type="date" name="start" className="filter-input" onChange={handleDateChange} />
       <input type="date" name="end"   className="filter-input" onChange={handleDateChange} />
-      <select className="filter-input">
-        <option>Все магазины</option>
-      </select>
-      <select className="filter-input">
-        <option>Все сотрудники</option>
-      </select>
     </div>
   );
 }

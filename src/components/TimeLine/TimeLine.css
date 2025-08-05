@@ -1,32 +1,53 @@
-/* контейнер */
-.timeline-container {
-  width: 100%;
-  height: 500px;
-  background: #fff;
-  border-radius: 6px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-/* план — сплошная заливка */
 .vis-item.plan {
-  background-color: #b3e5fc !important;
-  border: 1px solid #29b6f6 !important;
+  background-color: #d0eaff !important; 
+  border: 1px solid #64b5f6 !important;
+  z-index: 0 !important;
 }
 
-/* факт — штриховка */
+/* факт — штриховка (выше плана) */
 .vis-item.fact {
   background-image: repeating-linear-gradient(
     45deg,
-    rgba(0, 0, 0, 0.1),
-    rgba(0, 0, 0, 0.1) 4px,
+    rgba(50, 50, 93, 0.08),
+    rgba(50, 50, 93, 0.08) 4px,
     transparent 4px,
     transparent 8px
   ) !important;
-  border: 1px solid rgba(0,0,0,0.2) !important;
+  border: 1px solid rgba(50, 50, 93, 0.2) !important;
+  z-index: 1 !important;
 }
 
-/* подписи групп (сотрудников) */
-.vis-label {
-  font-weight: 500;
-  font-size: 14px;
+/* опоздания */
+.vis-item.late {
+  background-color: rgba(255, 213, 79, 0.6) !important;
+  border: 1px solid #ffca28 !important;
+  z-index: 2 !important;
+}
+
+/* прогулы */
+.vis-item.absent {
+  background-color: rgba(255, 112, 67, 0.5) !important;
+  border: 1px solid #ff7043 !important;
+  z-index: 2 !important;
+}
+
+/* переработка */
+.vis-item.overtime {
+  background-color: rgba(208, 234, 255, 0.4) !important; 
+  border: 1px dashed rgba(100, 181, 246, 0.6) !important;
+  z-index: 2 !important;
+}
+
+/* ранние уходы */
+.vis-item.early {
+  background-color: rgba(255, 183, 77, 0.55) !important;
+  border: 1px solid #ffa726 !important;
+  z-index: 2 !important;
+}
+
+/* факт — выделенный */
+.vis-item.fact.vis-selected {
+  background-image: none !important;
+  background-color: #d0eaff !important;
+  border: 1px solid #64b5f6 !important;
 }
