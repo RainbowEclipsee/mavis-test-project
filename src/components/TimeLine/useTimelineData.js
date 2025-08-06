@@ -6,13 +6,28 @@ import buildLateAndEarlyItems from './helpers/buildLateAndEarlyItems';
 export default function useTimelineData(data, filters) {
   if (!data) return { items: [], groups: [] };
 
-  const employees = groupEmployees(data.plan);
-  const plans = buildPlanItems(data.plan, employees, filters);
-  const facts = buildFactItems(data.fact, employees, filters);
-  const { latenesses, earlyLeaves, overTimeJob } = buildLateAndEarlyItems(data.plan, facts, employees);
+
+  let planFiltered = data.plan;
+  let factFiltered = data.fact;
+
+  if (filters.shop) {
+    planFiltered = planFiltered.filter(p => p.shop === filters.shop);
+    factFiltered = factFiltered.filter(f => f.shop === filters.shop);
+  }
+  if (filters.employee) {
+    planFiltered = planFiltered.filter(p => p.employee === filters.employee);
+    factFiltered = factFiltered.filter(f => f.employee === filters.employee);
+  }
+
+  const employees = groupEmployees(planFiltered);
+  
+  const plans = buildPlanItems( planFiltered, employees, filters);
+  const facts = buildFactItems(factFiltered, employees, filters);
+  const { latenesses, earlyLeaves, overTimeJob } =
+    buildLateAndEarlyItems(planFiltered, facts, employees, filters.start, filters.end);
 
   return {
     groups: employees,
-    items: [...plans, ...facts, ...latenesses, ...earlyLeaves, ...overTimeJob]
+    items:  [...plans, ...facts, ...latenesses, ...earlyLeaves, ...overTimeJob]
   };
 }

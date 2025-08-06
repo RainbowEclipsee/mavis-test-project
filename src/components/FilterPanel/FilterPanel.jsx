@@ -1,17 +1,54 @@
-'use client';
+'use client'
 
-import './FilterPanel.css';
+import './FilterPanel.css'
 
-export default function FilterPanel({ onFilterChange }) {
-  const handleDateChange = e => {
-    const { name, value } = e.target;
-    onFilterChange(prev => ({ ...prev, [name]: value }));
-  };
+export default function FilterPanel({
+  shops = [],
+  employees = [],
+  onFilterChange,
+}) {
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    onFilterChange((prev) => ({ ...prev, [name]: value }))
+  }
 
   return (
     <div className="filter-panel">
-      <input type="date" name="start" className="filter-input" onChange={handleDateChange} />
-      <input type="date" name="end"   className="filter-input" onChange={handleDateChange} />
+      <div className="filter-header">
+        <h3>Фильтр расписания</h3>
+      </div>
+      <div className="filter-controls">
+        <div className="filter-group">
+          <label htmlFor="start">Дата с</label>
+          <input id="start" name="start" type="date" onChange={handleChange} />
+        </div>
+        <div className="filter-group">
+          <label htmlFor="end">Дата по</label>
+          <input id="end" name="end" type="date" onChange={handleChange} />
+        </div>
+        <div className="filter-group">
+          <label htmlFor="shop">Магазин</label>
+          <select id="shop" name="shop" onChange={handleChange}>
+            <option value="">Все</option>
+            {shops.map((s, i) => (
+              <option key={i} value={s}>
+                {s}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="filter-group">
+          <label htmlFor="employee">Сотрудник</label>
+          <select id="employee" name="employee" onChange={handleChange}>
+            <option value="">Все</option>
+            {employees.map((e, i) => (
+              <option key={i} value={e}>
+                {e}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
     </div>
-  );
+  )
 }

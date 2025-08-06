@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import FilterPanel from '../components/FilterPanel/FilterPanel'
 import Timeline from '../components/Timeline/Timeline'
-import LegendInfo from '@/components/LegendInfo/LegendInfo'
+import LegendInfo from '../components/LegendInfo/LegendInfo'
 
 export default function Home() {
   const [data, setData] = useState(null)
@@ -19,9 +19,17 @@ export default function Home() {
       .catch((err) => console.error('Не удалось загрузить данные:', err))
   }, [])
 
+   const employeeOptions = data
+    ? Array.from(new Set(data.plan.map(p => p.employee)))
+    : [];
+
   return (
     <div className="container">
-      <FilterPanel onFilterChange={setFilters} />
+      <FilterPanel
+       shops={data ? Array.from(new Set(data.plan.map(p => p.shop))) : []}
+       employees={employeeOptions}
+       onFilterChange={setFilters}
+      />
       {data ? (
         <div>
           <Timeline data={data} filters={filters} />

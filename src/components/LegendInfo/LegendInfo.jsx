@@ -1,23 +1,27 @@
-import React from 'react';
+'use client';
+
 import './LegendInfo.css';
 
-const legendItems = [
-  { className: 'fact', label: 'Фактическое время' },
-  { className: 'overtime', label: 'Переработка' },
-  { className: 'late', label: 'Опоздание' },
-  { className: 'early', label: 'Ранний уход' },
-  { className: 'absent', label: 'Прогул' },
-];
-
 export default function LegendInfo() {
+  const items = [
+    { key: 'fact',   label: 'Фактическое время' },
+    { key: 'overtime', label: 'Переработка' },
+    { key: 'late',   label: 'Опоздание' },
+    { key: 'early',  label: 'Ранний уход' },,
+    { key: 'absent', label: 'Прогул' },
+  ];
+
   return (
-    <div className="legend">
-      {legendItems.map(item => (
-        <div className="legend-item" key={item.className}>
-          <span className={`legend-color ${item.className}`}></span>
-          <span className="legend-label">{item.label}</span>
-        </div>
-      ))}
+    <div className="legend-panel">
+      <h4>Легенда</h4>
+      <ul>
+        {items.map((i) => (
+          <li key={i.key}>
+            <span className={`legend-color ${i.key}`} />
+            {i.label}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

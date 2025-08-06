@@ -34,8 +34,8 @@
 
 /* переработка */
 .vis-item.overtime {
-  background-color: rgba(208, 234, 255, 0.4) !important; 
-  border: 1px dashed rgba(100, 181, 246, 0.6) !important;
+  background-color: rgba(102, 187, 106, 0.347) !important;  
+  border: 1px dashed rgba(76, 175, 79, 0.659) !important; 
   z-index: 2 !important;
 }
 

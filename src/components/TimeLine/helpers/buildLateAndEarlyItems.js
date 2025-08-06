@@ -68,10 +68,10 @@ export default function buildLateAndEarlyItems(planData, facts, employees ) {
     }
 
     // Прогулы теперь учитываются по другому
-    console.log(factStart)
-    console.log(factEnd)
-    console.log(planStart)
-    console.log(planEnd)
+    // console.log(factStart)
+    // console.log(factEnd)
+    // console.log(planStart)
+    // console.log(planEnd)
   })
 
 
