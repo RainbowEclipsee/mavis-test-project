@@ -1,9 +1,9 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import FilterPanel from '@/components/FilterPanel/FilterPanel'
-import Timeline from '@/components/Timeline/Timeline'
-import LegendInfo from '@/components/LegendInfo/LegendInfo'
+import FilterPanel from '@/components/filterPanel/FilterPanel'
+import Timeline from '@/components/timeLine/TimeLine'
+import LegendInfo from '@/components/legendInfo/LegendInfo'
 
 export default function SchedulesPage() {
   const [data, setData] = useState(null)
