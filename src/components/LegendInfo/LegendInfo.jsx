@@ -7,7 +7,7 @@ export default function LegendInfo() {
     { key: 'fact',   label: 'Фактическое время' },
     { key: 'overtime', label: 'Переработка' },
     { key: 'late',   label: 'Опоздание' },
-    { key: 'early',  label: 'Ранний уход' },,
+    { key: 'early',  label: 'Ранний уход' },
     { key: 'absent', label: 'Прогул' },
   ];
 

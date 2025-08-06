@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mavis Test Project — График работы сотрудников
 
-## Getting Started
+## Задание:
+На входе имеем: 2 набора данных (json):
+План: {Сотрудник, Магазин, Роль, ДатаВремя_ПланС, ДатаВремя_ПланПо} Факт: {Сотрудник, Магазин, Роль, ДатаВремя_ФактС, ДатаВремя_ФактПо}
+Необходимо сверстать расписание работы сотрудников. 
+На графике отображено плановое время работы сотрудника (закрашенные прямоугольники) и фактическое (закрашено штриховкой). 
+Для отображения графика можно использовать любой сторонний компонент.
+На выходе ожидаем: html страницу + js + css + json-файл с данными.
+БД & бэкэнд не требуются. Вёрстка должна быть адаптивная с поддержкой мобильных устройств.
 
-First, run the development server:
+Вариант Nº1. Облегченная задача (минимум):
+• Отобразить план работы всех сотрудников;
+• Фильтр: в диапазоне дат ограничиваем принудительно максимальную длительность - 4 дня (смен подряд у сотрудника);
+• У одного сотрудника может быть несколько смен в выбранном фильтре дат в одном магазине, нужно отобразить оба отрезка в одной строке;
+• При щелчке на смене сотрудника отображать плановую длительность этой смены.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Вариант Nº2. Задача нормальной сложности:
+• Дополнительно к минимуму: отображать факт, прогулы, опоздания, ранние уходы;
+• Максимальная длительность в фильтре не ограничена
+ 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Описание проекта
+Это прототип панели для управления расписанием сотрудников. Приложение позволяет:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- Отображать плановые и фактические смены сотрудников на интерактивном таймлайне
+- Визуально видеть опоздания, ранние уходы, переработки и прогулы
+- Фильтровать данные по дате, магазину и сотруднику
+- Просматривать легенду с расшифровкой цветовых обозначений
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Все данные хранятся в JSON-файле (`/data/schedule.json`).
 
-## Learn More
+## Функционал
 
-To learn more about Next.js, take a look at the following resources:
+- **Таймлайн** — плановые и фактические интервалы работы
+- **Фильтры** — по диапазону дат, по магазину, по сотруднику
+- **Цветовое выделение**:
+  - Штриховка — факт
+  - Жёлтый — опоздание
+  - Оранжевый — ранний уход
+  - Голубой/пунктир — переработка
+  - Коралловый — прогул
+- **Легенда** — поясняющие миниатюры под графиком
+- **Адаптивный дизайн** — корректно отображается на мобильных
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Технологии
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Next.js 15.4.5**  
+- **React 19.1.0**  
+- **vis-timeline 8.2.1**  
+- **ESLint 9**
 
-## Deploy on Vercel
+## Установка и запуск
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Клонируйте репозиторий:
+   ```bash
+   git clone https://github.com/RainbowEclipsee/mavis-test-project.git
+   cd mavis-test-project
+   npm install
+   npm run dev
