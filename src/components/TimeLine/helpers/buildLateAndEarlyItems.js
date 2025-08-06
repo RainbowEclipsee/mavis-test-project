@@ -1,8 +1,7 @@
-export default function buildLateAndEarlyItems(planData, facts, employees) {
+export default function buildLateAndEarlyItems(planData, facts, employees ) {
   const latenesses = []
   const earlyLeaves = []
   const overTimeJob = []
-  const absenteeism = []
 
   facts.forEach((fItem) => {
     const employeeName = employees.find((e) => e.id === fItem.group)?.content
@@ -67,34 +66,14 @@ export default function buildLateAndEarlyItems(planData, facts, employees) {
         content: '',
       })
     }
+
+    // Прогулы теперь учитываются по другому
+    console.log(factStart)
+    console.log(factEnd)
+    console.log(planStart)
+    console.log(planEnd)
   })
 
-  // Прогулы
-  planData.forEach((planItem) => {
-    const hasFact = facts.some(
-      (f) =>
-        employees.find((e) => e.id === f.group)?.content ===
-          planItem.employee &&
-        f.start &&
-        f.end &&
-        new Date(f.start).toDateString() ===
-          new Date(planItem.dateTimePlanStart).toDateString()
-    )
 
-    if (!hasFact) {
-      const employee = employees.find((e) => e.content === planItem.employee)
-      if (!employee) return
-
-      absenteeism.push({
-        id: `absent-${planItem.employee}-${planItem.dateTimePlanStart}`,
-        group: employee.id,
-        start: planItem.dateTimePlanStart,
-        end: planItem.dateTimePlanEnd,
-        className: 'absent',
-        content: '',
-      })
-    }
-  })
-
-  return { latenesses, earlyLeaves, overTimeJob, absenteeism }
+  return { latenesses, earlyLeaves, overTimeJob }
 }

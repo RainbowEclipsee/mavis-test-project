@@ -3,8 +3,9 @@
 import { useRef, useEffect } from 'react';
 import { Timeline as VisTimeline, DataSet } from 'vis-timeline/standalone';
 import 'vis-timeline/styles/vis-timeline-graph2d.css';
-import './Timeline.css';
 import useTimelineData from './useTimelineData';
+
+import './Timeline.css';
 
 export default function Timeline({ data, filters }) {
   const containerRef = useRef(null);
