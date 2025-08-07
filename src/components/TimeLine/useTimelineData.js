@@ -6,7 +6,7 @@ import buildLateAndEarlyItems from './helpers/buildLateAndEarlyItems';
 export default function useTimelineData(data, filters) {
   if (!data) return { items: [], groups: [] };
 
-
+ 
   let planFiltered = data.plan;
   let factFiltered = data.fact;
 
