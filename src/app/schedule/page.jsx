@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from 'react'
 import FilterPanel from '@/components/FilterPanel/FilterPanel'
-import Timeline from '@/components/Timeline/Timeline'
+import ScheduleTimeline from '@/components/ScheduleTimeline/ScheduleTimeline'
 import LegendInfo from '@/components/LegendInfo/LegendInfo'
- 
+  
 export default function SchedulesPage() {
   const [data, setData] = useState(null)
   const [filters, setFilters] = useState({ start: null, end: null })
@@ -32,7 +32,7 @@ export default function SchedulesPage() {
       />
       {data ? (
         <div>
-          <Timeline data={data} filters={filters} />
+          <ScheduleTimeline data={data} filters={filters} />
           <LegendInfo />
         </div>
       ) : (

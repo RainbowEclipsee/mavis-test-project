@@ -4,10 +4,10 @@ import { useRef, useEffect } from 'react';
 import { Timeline as VisTimeline, DataSet } from 'vis-timeline/standalone';
 import 'vis-timeline/styles/vis-timeline-graph2d.css';
 import useTimelineData from './useTimelineData';
- 
-import './Timeline.css';
+  
+import './ScheduleTimeline.css';
 
-export default function Timeline({ data, filters }) {
+export default function ScheduleTimeline({ data, filters }) {
   const containerRef = useRef(null);
   const { items, groups } = useTimelineData(data, filters);
 
