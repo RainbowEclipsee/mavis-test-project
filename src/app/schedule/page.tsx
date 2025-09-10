@@ -1,13 +1,14 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import FilterPanel from '@/components/FilterPanel/FilterPanel'
 import ScheduleTimeline from '@/components/ScheduleTimeline/ScheduleTimeline'
 import LegendInfo from '@/components/LegendInfo/LegendInfo'
-  
-export default function SchedulesPage() {
-  const [data, setData] = useState(null)
-  const [filters, setFilters] = useState({ start: null, end: null })
+import type { ScheduleData, Filters } from '@/models/types'
+
+const SchedulesPage: FC = () => {
+  const [data, setData] = useState<ScheduleData | null>(null)
+  const [filters, setFilters] = useState<Filters>({ start: null, end: null })
 
   useEffect(() => {
     fetch('/data/schedule.json')
@@ -23,10 +24,14 @@ export default function SchedulesPage() {
     ? Array.from(new Set(data.plan.map((p) => p.employee)))
     : []
 
+  const shopOptions = data 
+    ? Array.from(new Set(data.plan.map((p) => p.shop))) 
+    : []
+
   return (
     <div className="container">
       <FilterPanel
-        shops={data ? Array.from(new Set(data.plan.map((p) => p.shop))) : []}
+        shops={shopOptions}
         employees={employeeOptions}
         onFilterChange={setFilters}
       />
@@ -41,3 +46,5 @@ export default function SchedulesPage() {
     </div>
   )
 }
+
+export default SchedulesPage

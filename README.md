@@ -52,6 +52,7 @@
 
 - **Next.js 15.4.5**  
 - **React 19.1.0**  
+- **TypeScript 5.9.2**  
 - **vis-timeline 8.2.1**  
 - **ESLint 9**
 

@@ -1,12 +1,25 @@
-export default function buildLateAndEarlyItems(planData, facts, employees ) {
-  const latenesses = []
-  const earlyLeaves = []
-  const overTimeJob = []
+import type { TimelineItem, TimelineGroup, EmployeePlan } from '@/models/types'
+
+interface LateEarlyOvertime {
+  latenesses: TimelineItem[]
+  earlyLeaves: TimelineItem[]
+  overTimeJob: TimelineItem[]
+}
+
+const buildLateAndEarlyItems = (
+  planData: EmployeePlan[],
+  facts: TimelineItem[],
+  employees: TimelineGroup[] 
+): LateEarlyOvertime => {
+
+  const latenesses: TimelineItem[] = []
+  const earlyLeaves: TimelineItem[] = []
+  const overTimeJob: TimelineItem[] = []
 
   facts.forEach((fItem) => {
     const employeeName = employees.find((e) => e.id === fItem.group)?.content
     const factStart = new Date(fItem.start)
-    const factEnd = new Date(fItem.end)
+    const factEnd = fItem.end ? new Date(fItem.end) : factStart
 
     const plan = planData.find(
       (p) =>
@@ -36,7 +49,7 @@ export default function buildLateAndEarlyItems(planData, facts, employees ) {
       earlyLeaves.push({
         id: `early-${fItem.id}`,
         group: fItem.group,
-        start: fItem.end,
+        start: fItem.end!,
         end: plan.dateTimePlanEnd,
         className: 'early',
         content: '',
@@ -77,3 +90,5 @@ export default function buildLateAndEarlyItems(planData, facts, employees ) {
 
   return { latenesses, earlyLeaves, overTimeJob }
 }
+
+export default buildLateAndEarlyItems

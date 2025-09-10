@@ -2,7 +2,7 @@
 
 import './About.css'
 
-export default function AboutPage() {
+const AboutPage = () => {
   return (
     <div className="about-page">
       <h2>О приложении</h2>
@@ -53,3 +53,5 @@ export default function AboutPage() {
     </div>
   )
 }
+
+export default AboutPage

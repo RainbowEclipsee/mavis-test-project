@@ -1,13 +1,22 @@
 'use client'
 
+import React, { FC } from 'react'
 import './FilterPanel.css'
 
-export default function FilterPanel({
-  shops = [],
-  employees = [],
+interface FilterPanelProps {
+  shops: string[]
+  employees: string[]
+  onFilterChange: React.Dispatch<
+    React.SetStateAction<{ start: string | null; end: string | null }>
+  >
+}
+
+const FilterPanel: FC<FilterPanelProps> = ({
+  shops,
+  employees,
   onFilterChange,
-}) {
-  const handleChange = (e) => {
+}) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     onFilterChange((prev) => ({ ...prev, [name]: value }))
   }
@@ -52,3 +61,5 @@ export default function FilterPanel({
     </div>
   )
 }
+
+export default FilterPanel

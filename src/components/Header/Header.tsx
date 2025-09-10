@@ -1,13 +1,19 @@
 'use client';
 
-import Link from 'next/link';
+import { FC } from 'react';
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 import './Header.css';
 
-export default function Header() {
+interface NavItems {
+  href: string
+  label: string
+}
+
+const Header: FC = () => {
   const path = usePathname();
 
-  const navItems = [
+  const navItems: NavItems[] = [
     { href: '/schedule',label: 'График работы'   },
     { href: '/employees', label: 'Сотрудники' },
     { href: '/about',   label: 'О приложении' }
@@ -33,3 +39,5 @@ export default function Header() {
     </header>
   );
 }
+
+export default Header
